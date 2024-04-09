@@ -1,1 +1,1 @@
-# AsciiArtify
+# AsciiArtify demo
