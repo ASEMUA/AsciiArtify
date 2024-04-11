@@ -26,21 +26,6 @@ Handling connection for 8090
 ```bash
 @ASEMUA ➜ /workspaces/go-demo (master) $ kubectl get svc -n demo
 NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                 AGE
-demo-nats          ClusterIP   None            <none>        4222/TCP,6222/TCP,8222/TCP,7777/TCP,7422/TCP,7522/TCP   5m8s
-ambassador-admin   ClusterIP   10.43.199.124   <none>        8877/TCP                                                5m8s
-cache              ClusterIP   10.43.31.182    <none>        6379/TCP                                                5m8s
-db                 ClusterIP   10.43.7.151     <none>        3306/TCP                                                5m8s
-demo-img           ClusterIP   10.43.111.125   <none>        80/TCP                                                  5m8s
-demo-data          ClusterIP   10.43.62.146    <none>        80/TCP                                                  5m8s
-ambassador         NodePort    10.43.119.106   <none>        80:32681/TCP                                            5m8s
-demo-ascii         ClusterIP   10.43.239.79    <none>        80/TCP                                                  5m8s
-demo-api           ClusterIP   10.43.168.6     <none>        80/TCP                                                  5m8s
-demo-front         ClusterIP   10.43.132.219   <none>        80/TCP                                                  5m8s
-```
-
-```bash
-@ASEMUA ➜ /workspaces/go-demo (master) $ kubectl get svc -n demo
-NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                 AGE
 demo-nats          ClusterIP   None            <none>        4222/TCP,6222/TCP,8222/TCP,7777/TCP,7422/TCP,7522/TCP   66m
 ambassador-admin   ClusterIP   10.43.199.124   <none>        8877/TCP                                                66m
 cache              ClusterIP   10.43.31.182    <none>        6379/TCP                                                66m
@@ -51,6 +36,9 @@ demo-data          ClusterIP   10.43.62.146    <none>        80/TCP             
 demo-ascii         ClusterIP   10.43.239.79    <none>        80/TCP                                                  66m
 demo-front         ClusterIP   10.43.132.219   <none>        80/TCP                                                  66m
 demo-img           ClusterIP   10.43.111.125   <none>        80/TCP                                                  66m
+```
+- Прокидаємо порт до svc/ambassador
+```bash
 @ASEMUA ➜ /workspaces/go-demo (master) $ kubectl port-forward -n demo svc/ambassador 8091:80
 Forwarding from 127.0.0.1:8091 -> 80
 Forwarding from [::1]:8091 -> 80
