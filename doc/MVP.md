@@ -17,15 +17,11 @@ Handling connection for 8090
 Handling connection for 8090
 Handling connection for 8090
 ```
-- Зробимо запит на вказаний порт та отримаємо відповідь у вигляді версії додатку:  
-```bash
-@ASEMUA ➜ /workspaces/go-demo (master) $ curl localhost:8090
-<a href="https://localhost:8090/">Temporary Redirect</a>.   
-```
-- Наче не все добре, але  ArgoCD з цим не згоден
+
+- Наче все добре
 
 ![Argo](1.PNG)  
-
+![SyncOK](2.PNG)
 - Перевіримо зміни:
 ```bash
 @ASEMUA ➜ /workspaces/go-demo (master) $ kubectl get svc -n demo
@@ -61,7 +57,13 @@ Forwarding from [::1]:8091 -> 80
 Handling connection for 8091
 Handling connection for 8091
 ```
-![SyncOK](2.PNG)
+- Зробимо запит на вказаний порт та отримаємо відповідь у вигляді версії додатку:  
+```bash
+@ASEMUA ➜ /workspaces/go-demo (master) $ curl localhost:8091
+k8sdiy-api:599e1af
+
+```
+
 3. Перевіримо роботу застосунка 
 - Для цього завантажимо файл що зберігається у нас в локальному сховищі на вітдалений сервер командою:
 ```bash
