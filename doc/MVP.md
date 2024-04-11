@@ -22,15 +22,6 @@ Handling connection for 8090
 ```
 - Наче не все добре, але  ArgoCD з цим не згоден
 
-2. Виравлення проблеми з конфігураційними файлами
-- після попередніх експериментів перевіримо мережеві налаштування нашого застосунку:
-```bash
-✗ k get svc -n demo
-NAME               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)               AGE
-ambassador         LoadBalancer   10.43.190.212   <pending>     80:30092/TCP          84s
-```
-- заглянемо в інтерфейс ArgoCD, де відразу помітимо що стан здоров'я нашого додатку `ambassador` невизначено, отже копаємо сюди.
-
 ![ambassador](1.PNG)  
 
 - Перевіримо зміни:
@@ -52,12 +43,22 @@ demo-front         ClusterIP   10.43.128.24    <none>        80/TCP             
 3. Перевіримо роботу застосунка після виправлення помилки
 - Для цього завантажимо файл що зберігається у нас в локальному сховищі на вітдалений сервер командою:
 ```bash
-curl -F 'image=@g.png' localhost:8081/img/
+@ASEMUA ➜ /workspaces/kbot (main) $ wget -O /tmp/g.png https://img2.gratispng.com/20180406/xhq/kisspng-computer-icons-house-window-blinds-shades-brookl-adress-5ac7dd63724750.6622363615230477794681.jpg
+--2024-04-11 13:32:41--  https://img2.gratispng.com/20180406/xhq/kisspng-computer-icons-house-window-blinds-shades-brookl-adress-5ac7dd63724750.6622363615230477794681.jpg
+Resolving img2.gratispng.com (img2.gratispng.com)... 172.67.188.241, 104.21.65.55, 2606:4700:3037::6815:4137, ...
+Connecting to img2.gratispng.com (img2.gratispng.com)|172.67.188.241|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 50910 (50K) [image/jpeg]
+Saving to: ‘/tmp/g.png’
+
+/tmp/g.png                      100%[====================================================>]  49.72K  --.-KB/s    in 0.002s  
+
+2024-04-11 13:32:41 (25.4 MB/s) - ‘/tmp/g.png’ saved [50910/50910]
+
+@ASEMUA ➜ /workspaces/kbot (main) $ curl -F 'image=@g.png' localhost:8090/img/
+curl: (26) Failed to open/read local data from file/application
 ```
 - Отримаємо результат прямо в консолі:  
 
 ![Result](.img/argo_res.png)  
 
-4. Зафіксуємо весь описаний процес в наглядному форматі на відео:
-
-[![MPV Demo](.img/argo_mvp.png)](https://www.youtube.com/watch?v=uGHwzDpGGE0)
