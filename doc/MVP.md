@@ -31,7 +31,7 @@ ambassador         LoadBalancer   10.43.190.212   <pending>     80:30092/TCP    
 ```
 - заглянемо в інтерфейс ArgoCD, де відразу помітимо що стан здоров'я нашого додатку `ambassador` невизначено, отже копаємо сюди.
 
-![ambassador](.img/1.png)  
+![ambassador](1.png)  
 
 - Перевіримо зміни:
 ```bash
